@@ -1,4 +1,4 @@
-require 'pry'
+
 class CryptoWizard::CLI
 
 def call
@@ -10,7 +10,7 @@ end
 def list_currencies
 @listings = CryptoWizard::Listings.listing
 @listings.each.with_index(1) do |coin, i|
-  puts "#{i}. NAME: #{coin.name} - PRICE: $#{coin.price} - MARKET CAP: #{coin.market_cap} - SUPPLY: #{coin.supply}"
+  puts "#{i}. NAME: #{coin.name} - PRICE: $#{coin.price} - MARKET CAP: $#{coin.market_cap} - SUPPLY: #{coin.supply}"
 end
 end
 
@@ -22,11 +22,11 @@ def menu
     input = gets.strip.downcase
     if input.to_i > 0
       puts @listings[input.to_i - 1].name
-      puts "PRICE:"
+      puts "PRICE($):"
       puts @listings[input.to_i - 1].price
       puts "SUPPLY:"
       puts @listings[input.to_i - 1].supply
-      puts "MARKET CAP:"
+      puts "MARKET CAP($):"
       puts @listings[input.to_i - 1].market_cap
     elsif input == "list"
       list_currencies
